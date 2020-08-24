@@ -1,4 +1,4 @@
-# flutter_bixolon_printer
+# flutter_platformchannel_counter
 
 A new Flutter project.
 
