@@ -12,7 +12,7 @@ public class MainActivity extends FlutterActivity {
     int counter;
     int selectedNumber=1;
 
-    private static final String CHANNEL = "ir.ea2.flutter_bixolon_printer";
+    private static final String CHANNEL = "ir.ea2.flutter";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,11 +25,12 @@ public class MainActivity extends FlutterActivity {
                 counter = call.argument("counter");
 
                 if (counter != -1) {
-                    result.success(counter+selectedNumber);
+                    counter=counter+selectedNumber;
+                    result.success(counter);
                     Log.d("JavaCode Result>> ", "counter is : " + counter);
 
                 } else {
-                    result.error("UNAVAILABLE", "Battery level not available.", null);
+                    result.error("UNAVAILABLE", "This Number not available.", null);
                 }
             } else {
                 result.notImplemented();

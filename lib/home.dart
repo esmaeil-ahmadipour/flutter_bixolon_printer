@@ -13,7 +13,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int counter = 0;
   int result;
-  static const platform = const MethodChannel("ir.ea2.flutter_bixolon_printer");
+  static const platform = const MethodChannel("ir.ea2.flutter");
 
   incrementCounter() async {
     try {
