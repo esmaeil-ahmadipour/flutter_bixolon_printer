@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -10,12 +11,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int counter = 0;
+  static const platform = const MethodChannel("ir.ea2.flutter_bixolon_printer");
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  void incrementCounter() async {
+    int value;
+    try {
+      value = await platform.invokeMethod("incrementCounter",{"counter":counter});
+      setState(() async {
+        counter=value;
+      });
+
+    } catch (e) {
+    }
+    print('counter is: $counter');
   }
 
   @override
@@ -32,14 +41,14 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              '$counter',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
